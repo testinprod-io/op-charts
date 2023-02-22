@@ -1,0 +1,8 @@
+Welcome to op-node, a consensus engine for OP Stack.
+This engine should work along with an OP execution engine.
+
+Chain:{{- if .Values.rollupConfig.file }} Unknown OP Network{{- else }} {{ .Values.network }}{{- end }}
+
+For Local environment:
+Please run the following command to have access to the OP Node.
+  $ kubectl port-forward service/{{ .Release.Name }} {{ .Values.rpc.port.hostPort }} {{- if .Values.metrics.enabled }} {{ .Values.metrics.port.hostPort }}{{- end}} {{- if .Values.p2p.enabled}} {{ .Values.p2p.listen.tcp.hostPort}}{{- end}}

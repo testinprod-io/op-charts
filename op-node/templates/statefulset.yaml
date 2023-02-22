@@ -1,0 +1,128 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "op-node.fullname" . }}
+  labels:
+    {{- include "op-node.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "op-node.fullname" . }}
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "op-node.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "op-node.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: {{ .Values.rpc.port.name }}
+              containerPort: {{ .Values.rpc.port.containerPort }}
+            {{- if .Values.p2p.enabled }}
+            - name: {{ .Values.p2p.listen.tcp.name }}
+              containerPort: {{ .Values.p2p.listen.tcp.containerPort }}
+              protocol: TCP
+            - name: {{ .Values.p2p.listen.udp.name }}
+              containerPort: {{ .Values.p2p.listen.udp.containerPort }}
+              protocol: UDP
+            {{- end }}
+            {{- if .Values.metrics.enabled }}
+            - name: metrics-port
+              containerPort: {{ .Values.metrics.port.containerPort }}
+            {{- end }}
+            {{- if .Values.pprof.enabled }}
+            - name: pprof-port
+              containerPort: {{ .Values.pprof.port.containerPort }}
+            {{- end }}
+          command:
+            - op-node
+          args:
+            # required values
+            - --l1={{ .Values.l1.rpcAddr }}
+            - --l2={{ required "L2 Execution Engine Address is required." .Values.l2.rpcAddr }}
+            - --network={{ .Values.network }}
+            - --rpc.addr={{ .Values.rpc.addr }}
+            - --rpc.port={{ .Values.rpc.port.containerPort }}
+            - --rpc.enable-admin={{ .Values.rpc.enableAdmin }}
+            - --snapshotlog.file={{ .Values.snapshotLogPath }}
+
+            {{- if .Values.rollupConfig.file }}
+            # rollup config
+            - --rollup.config={{.Values.secretForVolumeMountDir}}/{{ .Values.rollupConfig.filename }}
+            {{- end }}
+
+            # jwt
+            - --l2.jwt-secret={{.Values.secretForVolumeMountDir}}/{{ required "A JWT secret key that has an admin access to L2 Execution Engine is required." .Values.l2.jwtSecret.filename }}
+
+            {{- if .Values.sequencer.enabled }}
+            # sequencer
+            - --sequencer.enabled=true
+            - --p2p.sequencer.key={{ .Values.sequencer.p2pKey }}
+            {{- end }}
+
+            {{- if .Values.p2p.enabled }}
+            # p2p
+            - --p2p.disable=false
+            - --p2p.listen.ip={{ .Values.p2p.listen.ip }}
+            - --p2p.listen.tcp={{ .Values.p2p.listen.tcp.containerPort }}
+            - --p2p.listen.udp={{ .Values.p2p.listen.udp.containerPort }}
+            {{- if .Values.p2p.priv.file }}
+            - --p2p.priv.path={{ .Values.secretForVolumeMountDir }}/{{ .Values.p2p.priv.filename }}
+            {{- end }}
+            {{- end }}
+
+            {{- if .Values.metrics.enabled }}
+            # metrics
+            - --metrics.enabled=true
+            - --metrics.addr={{ .Values.metrics.addr }}
+            - --metrics.port={{ .Values.metrics.port.containerPort }}
+            {{- end }}
+
+            # pprof
+            - --pprof.enabled={{ .Values.pprof.enabled }}
+
+            {{- with .Values.args }}
+            # Rest Arguments
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          volumeMounts:
+            # mounts all files in the Secrets.
+            - mountPath: {{ .Values.secretForVolumeMountDir }}
+              name: {{ .Values.secretForVolumeName }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 60
+            tcpSocket:
+              port: {{ .Values.rpc.port.name }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            # TODO: replace it to real http request.
+            initialDelaySeconds: 15
+            periodSeconds: 60
+            tcpSocket:
+              port: {{ .Values.rpc.port.name }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: {{ .Values.secretForVolumeName }}
+          secret:
+            secretName: {{ .Values.secretForVolumeName }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

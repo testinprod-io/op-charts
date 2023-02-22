@@ -1,0 +1,106 @@
+# Default values are set for Optimism Goerli Testnet.
+
+replicaCount: 1
+
+image:
+  repository: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag:
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+#######################################
+# op-node settings for Goerli testnet.
+#######################################
+livenessProbe: true
+readinessProbe: true
+
+secretForVolumeName: op-node-vol-secret
+secretForVolumeMountDir: /secrets
+
+l1:
+  rpcAddr: https://ethereum-goerli-rpc.allthatnode.com
+
+l2:
+  rpcAddr:
+  jwtSecret:
+    file: # insert a file
+    filename: jwt-secret.txt  # file path to store jwtSecret
+
+sequencer:
+  enabled: false
+  p2pKey:
+
+p2p:
+  enabled: true
+  priv:
+    file:
+    filename: p2ppriv.txt  # file path to store p2p.priv
+  listen:
+    ip: 0.0.0.0
+    tcp:
+      name: p2p-tcp-port
+      containerPort: 9003
+      hostPort: 9003
+    udp:
+      name: p2p-udp-port
+      containerPort: 9003
+      hostPort: 9003
+
+snapshotLogPath: /logs
+
+rollupConfig:
+  file:
+  filename: rollup.json
+
+network: goerli
+
+rpc:
+  port:
+    name: rpc-port
+    containerPort: 8545
+    hostPort: 7545
+  addr: 0.0.0.0
+  enableAdmin: false
+
+metrics:
+  enabled: true
+  addr: 0.0.0.0
+  port:
+    name: metrics-port
+    containerPort: 7300
+    hostPort: 7300
+
+pprof:
+  enabled: true
+  addr: 0.0.0.0
+  port:
+    name: pprof-port
+    containerPort: 6060
+    hostPort: 6060
+
+# rest application arguments
+args: []

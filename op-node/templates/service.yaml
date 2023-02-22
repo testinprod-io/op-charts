@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "op-node.fullname" . }}
+  labels:
+    {{- include "op-node.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: {{ .Values.rpc.port.name }}
+      port: {{ .Values.rpc.port.hostPort }}
+      targetPort: {{ .Values.rpc.port.containerPort }}
+    {{- if .Values.p2p.enabled }}
+    - name: {{ .Values.p2p.listen.tcp.name }}
+      port: {{ .Values.p2p.listen.tcp.hostPort }}
+      targetPort: {{ .Values.p2p.listen.tcp.containerPort }}
+      protocol: TCP
+    - name: {{ .Values.p2p.listen.udp.name }}
+      port: {{ .Values.p2p.listen.udp.hostPort }}
+      protocol: UDP
+      targetPort: {{ .Values.p2p.listen.udp.containerPort }}
+    {{- end }}
+    {{- if .Values.metrics.enabled }}
+    - name: {{ .Values.metrics.port.name }}
+      port: {{ .Values.metrics.port.hostPort }}
+      targetPort: {{ .Values.metrics.port.containerPort }}
+    {{- end }}
+    {{- if .Values.pprof.enabled }}
+    - name: {{ .Values.pprof.port.name }}
+      port: {{ .Values.pprof.port.hostPort }}
+      targetPort: {{ .Values.pprof.port.containerPort }}
+    {{- end }}
+
+  selector:
+    {{- include "op-node.selectorLabels" . | nindent 4 }}
