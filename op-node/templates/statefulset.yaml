@@ -92,7 +92,7 @@ spec:
           volumeMounts:
             # mounts all files in the Secrets.
             - mountPath: {{ .Values.secretForVolumeMountDir }}
-              name: {{ .Values.secretForVolumeName }}
+              name: {{ include "op-node.secretname" . }}
           {{- if .Values.livenessProbe }}
           livenessProbe:
             initialDelaySeconds: 15
@@ -111,9 +111,9 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        - name: {{ .Values.secretForVolumeName }}
+        - name: {{ include "op-node.secretname" . }}
           secret:
-            secretName: {{ .Values.secretForVolumeName }}
+            secretName: {{ include "op-node.secretname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -12,7 +12,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -38,7 +38,6 @@ affinity: {}
 livenessProbe: true
 readinessProbe: true
 
-secretForVolumeName: op-node-vol-secret
 secretForVolumeMountDir: /secrets
 
 l1:

@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "op-node.name" -}}
+{{- define "erigon.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "op-node.fullname" -}}
+{{- define "erigon.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,23 +26,23 @@ If release name contains chart name it will be used as a full name.
 {{/*
 secret vault name
 */}}
-{{- define "op-node.secretname" -}}
-{{ include "op-node.fullname" . }}-secret
+{{- define "erigon.secretname" -}}
+{{ include "erigon.fullname" . }}-secret
 {{- end }}
 
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "op-node.chart" -}}
+{{- define "erigon.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "op-node.labels" -}}
-helm.sh/chart: {{ include "op-node.chart" . }}
-{{ include "op-node.selectorLabels" . }}
+{{- define "erigon.labels" -}}
+helm.sh/chart: {{ include "erigon.chart" . }}
+{{ include "erigon.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -52,8 +52,9 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "op-node.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "op-node.name" . }}
+{{- define "erigon.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "erigon.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+release: {{ .Release.Name }}
 {{- end }}
 

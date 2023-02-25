@@ -1,0 +1,113 @@
+replicaCount: 1
+
+image:
+  repository: ethereum/client-go
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag:
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: LoadBalancer
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+#   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+#######################################
+# geth settings
+#######################################
+predefinedNetwork: mainnet  # Put either `mainnet`, `optimism-goerli`, `goerli`, or `sepolia` for pre-defined settings.
+
+optimism-img:
+  repo: ethereumoptimism/op-geth
+  tag: optimism-history
+
+livenessProbe: true
+readinessProbe: true
+
+secretForVolumeMountDir: /secrets
+
+rpc:
+  http:
+    enabled: true
+    addr: 0.0.0.0
+    api: "net,eth,personal,web3,debug,engine,txpool"
+    corsDomain: "*"
+    port:
+      name: rpc-http-port
+      containerPort: 8545
+      hostPort: 8545
+  ws:
+    enabled: true
+    addr: 0.0.0.0
+    port:
+      name: rpc-ws-port
+      containerPort: 8546
+      hostPort: 8546
+    api: "net,eth,personal,web3,engine,txpool"
+    origins: "*"
+
+authrpc:
+  enabled: true
+  addr: 0.0.0.0
+  port:
+    name: authrpc-port
+    containerPort: 8551
+    hostPort: 8551
+  jwtSecret:
+    defaultFile: abf3a433bfe1f8faa262ad82b3ec5fa572e9c045a4c44bd3b21998e77fd3632a
+    file: abf3a433bfe1f8faa262ad82b3ec5fa572e9c045a4c44bd3b21998e77fd3632a  # insert a file
+    filename: jwt-secret.txt
+  vhosts: "*"
+
+pprof:
+  enabled: true
+  addr: 0.0.0.0
+  port:
+    name: pprof-port
+    containerPort: 6060
+    hostPort: 6060
+
+metrics:
+  enabled: true
+  addr: 0.0.0.0
+  port:
+    name: metrics-port
+    containerPort: 7300
+    hostPort: 7300
+
+# data path that geth db will be stored. it will go under persistence db.
+dataPath: /data
+
+# if you want to import the chain data, use this thing.
+importTarURL:
+
+syncMode: "snap"
+
+networkID: 1
+
+maxPeers: 50
+cache: 4096
+args: []
+
+persistence:
+  # For Optimism, you probably need at least 100Gi for the full-node.
+  size: 200Gi
+  mountDir: /root
+  name: data

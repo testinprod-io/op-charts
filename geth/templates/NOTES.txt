@@ -1,0 +1,22 @@
+## Geth ##
+Welcome to geth, an execution engine for EVM network.
+
+## Network Config ##
+Predefined Network: {{ .Values.predefinedNetwork | default "No" }}
+ChainID: {{ .Values.networkID | default "Unknown" }}
+
+## For local env ##
+Please run the following command to have access to the geth.
+  $ kubectl port-forward service/{{ .Release.Name }} {{- if .Values.rpc.http.enabled }} {{ .Values.rpc.http.port.hostPort }}{{- end }} {{- if .Values.authrpc.enabled }} {{ .Values.authrpc.port.hostPort }} {{- end }} {{- if .Values.rpc.ws.enabled }} {{ .Values.rpc.ws.port.hostPort }}{{- end }} {{- if .Values.metrics.enabled }} {{ .Values.metrics.port.hostPort }}{{- end }}
+
+## For logs ##
+  $ kubectl logs -f service/{{ include "geth.fullname" . }}
+
+{{- if and (eq .Values.authrpc.jwtSecret.file .Values.authrpc.jwtSecret.defaultFile) .Values.authrpc.enabled }}
+
+## SECURITY WARNING ##
+Your AuthRPC is turned on, but the secret key is set to the default key: {{ .Values.authrpc.jwtSecret.file }}
+Please change `.Values.authrpc.jwtSecret.file` value to your own key.
+You can generate one with the following command:
+  $ openssl rand -hex 32
+{{- end }}

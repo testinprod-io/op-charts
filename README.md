@@ -11,6 +11,6 @@ Because you probably need your own rollup at the end of the day and building on 
 We just want to help you to onboard on the OP Stack :)
 
 ## Thanks
-Thanks for OP Labs and Optimism Foundation for building and open-sourcing this amazing tech stack.
+Thanks for OP Labs, Optimism Foundation, and Ethereum Foundation for building and open-sourcing this amazing collective and technology.
 
 _Let's stay Optimistic!_
