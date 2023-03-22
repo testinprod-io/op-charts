@@ -14,6 +14,7 @@ We just want to help you to onboard on the OP Stack :)
 Thanks for OP Labs, Optimism Foundation, and Ethereum Foundation for building and open-sourcing this amazing collective and technology.
 
 ## Chart Index
-[here](index.yaml)
+[There you go!](index.yaml)
+
 
 _Let's stay Optimistic!_
