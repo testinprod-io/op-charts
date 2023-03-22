@@ -1,0 +1,38 @@
+apiVersion: v1
+entries:
+  erigon:
+  - apiVersion: v2
+    appVersion: v1.10.26
+    created: "2023-03-22T05:15:39.379774041Z"
+    description: A Helm chart for Ethereum Execution Engine for efficiency frontier,
+      erigon.
+    digest: 227af99cce1103bdaf939135054d16d0e3c1e68b02f5c21e9df33072fd90829f
+    name: erigon
+    type: application
+    urls:
+    - https://github.com/testinprod-io/op-helm-charts/releases/download/erigon-0.0.1/erigon-0.0.1.tgz
+    version: 0.0.1
+  geth:
+  - apiVersion: v2
+    appVersion: v1.10.26
+    created: "2023-03-22T05:15:39.542528284Z"
+    description: A Helm chart for Ethereum Execution Engine, geth.
+    digest: 733acd79e004b9fe3ea131bafb86292e8ac6fd0a94e9565b4f966df5f4aa1ee6
+    name: geth
+    type: application
+    urls:
+    - https://github.com/testinprod-io/op-helm-charts/releases/download/geth-0.0.1/geth-0.0.1.tgz
+    version: 0.0.1
+  op-node:
+  - apiVersion: v2
+    appVersion: v0.10.13
+    created: "2023-03-22T05:15:39.70211514Z"
+    description: A consensus engine for OP Stack. You can build a new OP Stack chain
+      or connect to an existing one.
+    digest: 795505cce5c3683ea676300465456778dae1f78916d7531443efe399bb11f09c
+    name: op-node
+    type: application
+    urls:
+    - https://github.com/testinprod-io/op-helm-charts/releases/download/op-node-0.0.1/op-node-0.0.1.tgz
+    version: 0.0.1
+generated: "2023-03-22T05:15:39.702310848Z"
