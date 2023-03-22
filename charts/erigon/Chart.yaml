@@ -1,6 +1,0 @@
-apiVersion: v2
-name: erigon
-description: A Helm chart for Ethereum Execution Engine for efficiency frontier, erigon.
-type: application
-version: 0.0.1
-appVersion: v1.10.26

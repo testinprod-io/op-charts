@@ -1,6 +1,0 @@
-apiVersion: v2
-name: op-node
-description: A consensus engine for OP Stack. You can build a new OP Stack chain or connect to an existing one.
-type: application
-version: 0.0.1
-appVersion: "v0.10.13"
