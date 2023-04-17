@@ -97,7 +97,7 @@ maxPeers: 50
 args: []
 
 persistence:
-  # For Optimism, you probably need at least 100Gi for the full-node.
+  # For Optimism testnet, you probably need at least 100Gi for the full-node.
   size: 200Gi
   mountDir: /home/erigon
   name: data

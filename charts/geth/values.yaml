@@ -107,7 +107,7 @@ cache: 4096
 args: []
 
 persistence:
-  # For Optimism, you probably need at least 100Gi for the full-node.
+  # For Optimism Testnet, you probably need at least 100Gi for the full-node.
   size: 200Gi
   mountDir: /root
   name: data

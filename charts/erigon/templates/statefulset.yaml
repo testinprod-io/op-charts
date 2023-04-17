@@ -23,6 +23,8 @@ spec:
           - |
             rm -rf {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/LOCK  # remove lock
             rm -rf {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/nodekey  # remove nodekey
+            chown -R 1000:1000 {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/
+            chmod -R g+w {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/
         image: busybox
         imagePullPolicy: IfNotPresent
         volumeMounts:
