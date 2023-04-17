@@ -3,6 +3,17 @@ entries:
   erigon:
   - apiVersion: v2
     appVersion: v1.10.26
+    created: "2023-04-17T09:42:59.313101283Z"
+    description: A Helm chart for Ethereum Execution Engine for efficiency frontier,
+      erigon.
+    digest: 91a47c5215a9d1c4700e051282465db635013ee7fc3d77cf09c0254f75ca0cae
+    name: erigon
+    type: application
+    urls:
+    - https://github.com/testinprod-io/op-charts/releases/download/erigon-0.0.3/erigon-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: v1.10.26
     created: "2023-03-22T05:15:39.379774041Z"
     description: A Helm chart for Ethereum Execution Engine for efficiency frontier,
       erigon.
@@ -45,4 +56,4 @@ entries:
     urls:
     - https://github.com/testinprod-io/op-helm-charts/releases/download/op-node-0.0.1/op-node-0.0.1.tgz
     version: 0.0.1
-generated: "2023-04-17T08:36:01.556512258Z"
+generated: "2023-04-17T09:42:59.313110083Z"
