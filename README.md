@@ -1,6 +1,6 @@
+# OP Helm Charts
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/op-charts)](https://artifacthub.io/packages/search?repo=op-charts)
 
-# OP Helm Charts
 This repository contains helm charts for Optimism and Ethereum infrastructure.
 
 ## What can I do with these charts?
