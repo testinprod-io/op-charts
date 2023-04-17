@@ -15,6 +15,16 @@ entries:
   geth:
   - apiVersion: v2
     appVersion: v1.10.26
+    created: "2023-04-17T08:36:01.556503942Z"
+    description: A Helm chart for Ethereum Execution Engine, geth.
+    digest: 0a8938c3c10634c5776690b2bd15c4a8abd51804a112a5d813624253053be2c3
+    name: geth
+    type: application
+    urls:
+    - https://github.com/testinprod-io/op-charts/releases/download/geth-0.0.2/geth-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: v1.10.26
     created: "2023-03-22T05:15:39.542528284Z"
     description: A Helm chart for Ethereum Execution Engine, geth.
     digest: 733acd79e004b9fe3ea131bafb86292e8ac6fd0a94e9565b4f966df5f4aa1ee6
@@ -35,4 +45,4 @@ entries:
     urls:
     - https://github.com/testinprod-io/op-helm-charts/releases/download/op-node-0.0.1/op-node-0.0.1.tgz
     version: 0.0.1
-generated: "2023-03-22T05:15:39.702310848Z"
+generated: "2023-04-17T08:36:01.556512258Z"
