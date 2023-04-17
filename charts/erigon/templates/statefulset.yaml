@@ -23,6 +23,7 @@ spec:
           - |
             rm -rf {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/LOCK  # remove lock
             rm -rf {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/nodekey  # remove nodekey
+            mkdir -p {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}
             chown -R 1000:1000 {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/
             chmod -R g+w {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/
         image: busybox
@@ -44,6 +45,8 @@ spec:
             wget -O {{ .Values.persistence.mountDir }}/imported.tar {{ .Values.importTarURL }}  # download from URL
             rm -rf {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}  # clean dir
             mkdir -p {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}
+            chown -R 1000:1000 {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/
+            chmod -R g+w {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/
             echo "extracting tar..."
             tar -xf {{ .Values.persistence.mountDir }}/imported.tar -C {{ .Values.persistence.mountDir }}{{ .Values.dataPath }}/
             rm -rf {{ .Values.persistence.mountDir }}/imported.tar
