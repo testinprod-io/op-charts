@@ -15,6 +15,9 @@ helm repo add op-charts https://testinprod-io.github.io/op-charts/
 ## Why are you building this?
 We want to help you to onboard on the OP Stack!
 
+## Chart Index
+[here](index.yaml)
+
 ## Thanks
 Thanks for OP Labs, Optimism Foundation, and Ethereum Foundation for building and open-sourcing this amazing collective and technology.
 
