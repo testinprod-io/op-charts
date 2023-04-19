@@ -1,0 +1,23 @@
+# optimism goerli
+image:
+  repository: ethereumoptimism/op-geth
+  tag: latest
+
+importTarURL: https://storage.googleapis.com/oplabs-goerli-data/goerli-bedrock.tar
+syncMode: full
+maxPeers: 0
+networkID:
+
+# op-geth specific
+args: ["--rollup.disabletxpoolgossip=true", "--rollup.sequencerhttp=https://goerli-sequencer.optimism.io",
+       "--nodiscover", "--allow-insecure-unlock"]
+
+authrpc:
+  jwtSecret:
+    file: # TODO: generate a jwtSecret for the EngineAPI with the following command: `openssl rand -hex 32`.
+
+persistence:
+  size: 300Gi
+predefinedNetwork:
+
+resources: {"requests": {"cpu": 2, "memory": "4Gi"}}

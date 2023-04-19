@@ -1,0 +1,15 @@
+l2:
+  rpcAddr: # TODO: place your execution client's RPC address including https:// or wss://
+  jwtSecret:
+    file: # TODO: place your execution client's jwtSecret here
+
+p2p:
+  priv:
+    file: # TODO: generate your private key for p2p communication with other clients with the following command: `openssl rand -hex 32`.
+
+l1:
+  rpcAddr:  # TODO: place the L1 RPC address including https:// or wss://
+
+resources: {"requests": {"cpu": 2, "memory": "4Gi"}}
+
+args: ["--p2p.sync.req-resp"]  # This is an experimental p2p sync feature. It helps blazing-fast node sync.

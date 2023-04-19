@@ -7,10 +7,13 @@ This repository contains helm charts for Optimism and Ethereum infrastructure.
 - You can build an OP Stack chain with a few lines of configurations.
 - You can run Optimism network node easily.
 
-## Why are you building this?
-Because you probably need your own rollup at the end of the day and building on OP Stack is the best answer.
+## How can I add your repository?
+```shell
+helm repo add op-charts https://testinprod-io.github.io/op-charts/
+```
 
-We just want to help you to onboard on the OP Stack :)
+## Why are you building this?
+We want to help you to onboard on the OP Stack!
 
 ## Thanks
 Thanks for OP Labs, Optimism Foundation, and Ethereum Foundation for building and open-sourcing this amazing collective and technology.

@@ -86,7 +86,7 @@ dataPath: /data
 # if you want to import the chain data, use this thing.
 importTarURL:
 
-predefinedNetwork: mainnet  # Put either `mainnet`, `optimism-goerli`, `goerli`, or `sepolia` for pre-defined settings.
+predefinedNetwork: mainnet  # Put either `mainnet`, `goerli`, or `sepolia` for pre-defined settings.
 networkID: 1
 
 optimism-img:

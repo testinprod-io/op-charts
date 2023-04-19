@@ -4,8 +4,10 @@ OP Node is a consensus engine for OP Stack. This is a OP Node Helm Chart package
 ## Introduction
 You can build a new OP Stack chain or connect to an existing one. You need an OP execution engine that works along with OP Node.
 
+Please refer to the example values for Optimism Goerli [here.](example-values/optimism-goerli.yaml)
+
 ## LFG
-`helm install op-node-release . -f values.yaml`
+`helm install op-node-release op-charts/op-node -f values.yaml`
 
 ## Requirements
 1. K8s 1.8+

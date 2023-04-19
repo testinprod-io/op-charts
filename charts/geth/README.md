@@ -2,10 +2,12 @@
 Geth is an execution engine for EVM network. This is a Geth Helm Chart packaged by Test in Prod.
 
 ## Introduction
-You can use this chart for any EVM network including Optimism ;)
+You can use this chart for any EVM network including Optimism.
+
+Please refer to the example values for Optimism Goerli [here.](example-values/optimism-goerli.yaml)
 
 ## LFG
-`helm install geth-release . -f values.yaml`
+`helm install geth-release op-charts/geth -f values.yaml`
 
 ## Requirements
 1. K8s 1.8+

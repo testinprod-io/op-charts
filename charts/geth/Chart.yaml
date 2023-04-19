@@ -2,5 +2,5 @@ apiVersion: v2
 name: geth
 description: A Helm chart for Ethereum Execution Engine, geth.
 type: application
-version: 0.0.2
+version: 0.0.3
 appVersion: v1.10.26

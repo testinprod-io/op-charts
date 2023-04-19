@@ -1,0 +1,23 @@
+# Settings for Optimism Goerli
+image:
+  repository: testinprod/op-erigon
+  tag: latest
+
+importTarURL: https://op-erigon-backup.goerli.testinprod.io
+maxPeers: 0
+networkID: 420
+
+# op-erigon specific
+args: ["--rollup.historicalrpc=https://goerli.optimism.io",
+       "--rollup.sequencerhttp=https://goerli-sequencer.optimism.io",
+       "--nodiscover", "--externalcl"]
+
+authrpc:
+  jwtSecret:
+    file: # TODO: generate a jwtSecret for the EngineAPI with the following command: `openssl rand -hex 32`.
+
+persistence:
+  size: 100Gi
+predefinedNetwork:
+
+resources: {"requests": {"cpu": 2, "memory": "4Gi"}}
