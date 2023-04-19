@@ -3,6 +3,17 @@ entries:
   erigon:
   - apiVersion: v2
     appVersion: v1.10.26
+    created: "2023-04-19T05:47:50.737063677Z"
+    description: A Helm chart for Ethereum Execution Engine for efficiency frontier,
+      erigon.
+    digest: 75cdbd34fd9ba61c8bcbb8133d034347bdabee356f8774a8f8a018aec5b2591c
+    name: erigon
+    type: application
+    urls:
+    - https://github.com/testinprod-io/op-charts/releases/download/erigon-0.0.4/erigon-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: v1.10.26
     created: "2023-04-17T09:42:59.313101283Z"
     description: A Helm chart for Ethereum Execution Engine for efficiency frontier,
       erigon.
@@ -26,6 +37,16 @@ entries:
   geth:
   - apiVersion: v2
     appVersion: v1.10.26
+    created: "2023-04-19T05:47:50.952326446Z"
+    description: A Helm chart for Ethereum Execution Engine, geth.
+    digest: e784c703f416c9a473564e5ebe8f0add1f9930f009c6623127154f60a73732ea
+    name: geth
+    type: application
+    urls:
+    - https://github.com/testinprod-io/op-charts/releases/download/geth-0.0.3/geth-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: v1.10.26
     created: "2023-04-17T08:36:01.556503942Z"
     description: A Helm chart for Ethereum Execution Engine, geth.
     digest: 0a8938c3c10634c5776690b2bd15c4a8abd51804a112a5d813624253053be2c3
@@ -47,6 +68,17 @@ entries:
   op-node:
   - apiVersion: v2
     appVersion: v0.10.13
+    created: "2023-04-19T05:47:51.164450688Z"
+    description: A consensus engine for OP Stack. You can build a new OP Stack chain
+      or connect to an existing one.
+    digest: 4452a0a842e69edc32678bd0ad05ea33b4e153dfdd934d3ae695ab5019acdcf8
+    name: op-node
+    type: application
+    urls:
+    - https://github.com/testinprod-io/op-charts/releases/download/op-node-0.0.2/op-node-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: v0.10.13
     created: "2023-03-22T05:15:39.70211514Z"
     description: A consensus engine for OP Stack. You can build a new OP Stack chain
       or connect to an existing one.
@@ -56,4 +88,4 @@ entries:
     urls:
     - https://github.com/testinprod-io/op-helm-charts/releases/download/op-node-0.0.1/op-node-0.0.1.tgz
     version: 0.0.1
-generated: "2023-04-17T09:42:59.313110083Z"
+generated: "2023-04-19T05:47:51.164472588Z"
